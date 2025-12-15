@@ -1,30 +1,23 @@
 import dotenv from "dotenv";
-dotenv.config(); // Must be first
-
+dotenv.config({ path: "./.env" }); 
 import express from "express";
+import http from "http";
 import cors from "cors";
-import authRoutes from "./routes/authRoutes.js";
+import { connectDB } from "./src/config/db.js";
+import { authRouter } from "./src/routes/authRoutes.js";
 
 const app = express();
+const server = http.createServer(app);
+const port = process.env.PORT || 5001;
 
 app.use(cors());
 app.use(express.json());
-
-// Log to verify env
-console.log("Loaded env vars:", {
-  DB_USER: process.env.DB_USER,
-  DB_PASSWORD: process.env.DB_PASSWORD,
-  DB_NAME: process.env.DB_NAME,
-  DB_HOST: process.env.DB_HOST,
-  DB_PORT: process.env.DB_PORT,
-  JWT_SECRET: process.env.JWT_SECRET
-});
+connectDB();
 
 // Mount auth routes
-app.use("/api/auth", authRoutes);
+app.use("/api/auth", authRouter);
 
-// Start server
-const PORT = process.env.PORT || 5001;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+
+server.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
