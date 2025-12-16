@@ -11,4 +11,4 @@ router.get("/:id", authenticate, getObservationById);
 router.put("/:id", authenticate, updateObservation);
 router.delete("/:id", authenticate, deleteObservation);
 
-export default router;
+export { router as observationRouter };
