@@ -4,8 +4,8 @@ import observationModel from "../models/observation.model";
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 
 const validateCreatePayload = (body) => {
-  const { type, category, description, location } = body;
-  if (!type || !category || !description || !location) {
+  const { type, category, description } = body;
+  if (!type || !category || !description) {
     return "Missing required fields";
   }
   return null;
@@ -25,7 +25,7 @@ export const createObservation = async (req, res) => {
       description: req.body.description,
       location: req.body.location,
       riskLevel: req.body.riskLevel,
-      imageUrl: req.file ? `/uploads/${req.file.filename}` : null
+      draftStatus: req.body.draftStatus || false,
     });
 
     res.status(201).json(observation);

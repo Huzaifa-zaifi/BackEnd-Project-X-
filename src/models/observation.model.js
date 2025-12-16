@@ -36,6 +36,15 @@ const observationSchema = new mongoose.Schema(
       type: String,
       enum: ["Submitted", "In Review", "Closed"],
       default: "Submitted"
+    },
+    draftStatus: {
+      type: Boolean,
+      default: false
+    },
+    reviewedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
+      default: null
     }
   },
   { timestamps: true }
