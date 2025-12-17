@@ -34,10 +34,11 @@ const userSchema = new Schema(
     },
 
     role: {
-      type: [String],
+      type: String,
       enum: ["user", "admin", "moderator"],
-      default: ["user"]
+      default: "user"
     },
+    
 
     status: {
       type: String,
