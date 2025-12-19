@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import observationModel from "../models/observation.model";
+import observationModel from "../models/observation.model.js";
 
 const isValidObjectId = (id) => mongoose.Types.ObjectId.isValid(id);
 

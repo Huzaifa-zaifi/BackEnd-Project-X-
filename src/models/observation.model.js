@@ -1,3 +1,4 @@
+// models/Observation.js
 import mongoose from "mongoose";
 
 const observationSchema = new mongoose.Schema(
@@ -37,14 +38,18 @@ const observationSchema = new mongoose.Schema(
       enum: ["Submitted", "In Review", "Closed"],
       default: "Submitted"
     },
-    draftStatus: {
-      type: Boolean,
-      default: false
-    },
+
+    draftStatus: { type: Boolean, default: false },
+
     reviewedBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
       default: null
+    },
+
+    supervisorComment: {
+      type: String,
+      default: ""
     }
   },
   { timestamps: true }
