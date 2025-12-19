@@ -1,4 +1,4 @@
-import observationModel from "../models/observation.model";
+import observationModel from "../models/observation.model.js";
 
 
 /**
