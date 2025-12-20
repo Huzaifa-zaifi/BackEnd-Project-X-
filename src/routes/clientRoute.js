@@ -45,4 +45,4 @@ router.get(
   clientAnalytics
 );
 
-export default router;
+export {router as clientRouter };

@@ -20,6 +20,7 @@ connectDB();
 app.use("/api/auth", authRouter);
 app.use("/api/observations", observationRouter)
 app.use("/api/supervisor", supervisorRouter);
+app.use("/api/client", clientRouter); 
 
 server.listen(port, () => {
   console.log(`Server running on port ${port}`);
