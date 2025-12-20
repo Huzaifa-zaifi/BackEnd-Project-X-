@@ -29,7 +29,8 @@ export const supervisorDashboard = async (req, res) => {
  * 4.2 Get Observations for Review
  */
 export const getSubmittedObservations = async (req, res) => {
-  const observations = await observationModel.find({ status: "Submitted" })
+  const { status } = req.query;
+  const observations = await observationModel.find({ status: status || "Submitted" })
     .populate("employee", "name email")
     .sort({ createdAt: -1 });
 
