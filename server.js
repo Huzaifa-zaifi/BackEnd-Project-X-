@@ -7,6 +7,7 @@ import { connectDB } from "./src/config/db.js";
 import { authRouter } from "./src/routes/authRoutes.js";
 import { observationRouter } from "./src/routes/observation.Route.js";
 import { supervisorRouter } from "./src/routes/supervisorRoute.js";
+import { clientRouter } from "./src/routes/clientRoute.js";
 
 const app = express();
 const server = http.createServer(app);
