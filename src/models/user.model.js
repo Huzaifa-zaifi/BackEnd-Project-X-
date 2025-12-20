@@ -18,6 +18,7 @@ const userSchema = new Schema(
       unique: true,
       lowercase: true,
       trim: true,
+      match: [/^\S+@\S+\.\S+$/, "Invalid email"]
     },
 
     password: {
@@ -29,16 +30,28 @@ const userSchema = new Schema(
 
     phoneNumber: {
       type: String,
-      trim: true,
-      index: true
+      trim: true
     },
 
     role: {
       type: String,
-      enum: ["user", "admin", "moderator"],
+      enum: ["user", "supervisor", "admin"],
       default: "user"
     },
-    
+
+    department: {
+      type: String,
+      default: "General"
+    },
+
+    designation: {
+      type: String,
+      default: "Employee"
+    },
+
+    profileImage: {
+      type: String
+    },
 
     status: {
       type: String,
@@ -51,13 +64,19 @@ const userSchema = new Schema(
       default: false
     },
 
-    lastLoginAt: {
-      type: Date
-    }
+    isDeleted: {
+      type: Boolean,
+      default: false
+    },
+
+    lastLoginAt: Date
   },
   {
     timestamps: true
   }
 );
+
+// prevent duplicate index crash
+userSchema.index({ email: 1 });
 
 export default model("User", userSchema);
